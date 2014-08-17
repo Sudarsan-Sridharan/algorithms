@@ -18,18 +18,21 @@ public class weightedQuickUnion {
 	}
 
 	private int root(int i){
-		while (i != id[i]) i= id[i];
-		return i;					// Max N- array access , one for each element
+		while (i != id[i]) {
+			id[i] = id[id[i]];	// One pass Path compression
+			i= id[i];
+		}
+		return i;			// Max N- array access , one for each element
 	}
 
 	public boolean connected(int p, int q){
-		return (root(p) == root(q));					// Max N- array access , one for each element
+		return (root(p) == root(q));		// Max N- array access , one for each element
 	}
 	
 	public void union(int p, int q){
 		int pid = root(p);
 		int qid = root(q);
-		if (pid == qid) return;								// Max N array access
+		if (pid == qid) return;				// Max N array access
 		if(size[pid] < size[qid]){
 			id[pid] = qid;
 			size[qid] += size[pid];

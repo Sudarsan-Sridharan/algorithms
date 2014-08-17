@@ -6,7 +6,8 @@ public class QuickFindUF {
 	
 	public QuickFindUF(int N){
 		id = new int[N];
-		for (int i=0; i<N; i++)	id[i] = i;		// N-array access		
+		for (int i=0; i<N; i++)						// Populating the array
+			id[i] = i;								// N-array access		
 	}
 
 	public boolean connected(int p, int q){
@@ -16,8 +17,11 @@ public class QuickFindUF {
 	public void union(int p, int q){
 		int pid = id[p];
 		int qid = id[q];
-		for (int i=0; i< id.length; i++) if (id[i] == pid) id[i] = qid;	
-	// Max (2 + 2N) array access, one each for getting pid,qid and max 'N' for value change if all elements other than qid are in same group
+		for (int i=0; i< id.length; i++) 
+			if (id[i] == pid) 
+				id[i] = qid;	
+	// Max (2 + 2N) array access, one each for getting pid,qid and max 'N' for value change if all elements other 
+	//	than qid are in same group
 	}
 	/*  No of array access (for read or for write) : Order of growth of No of array access
 	 Initialize = N

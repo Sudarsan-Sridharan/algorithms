@@ -8,11 +8,13 @@ public class QuickUnionQF {
 	
 	public QuickUnionQF(int N){
 		id = new int[N];
-		for (int i=0; i<N; i++)	id[i] = i;		// N-array access		
+		for (int i=0; i<N; i++)	
+			id[i] = i;		// N-array access		
 	}
 
 	private int root(int i){
-		while (i != id[i]) i= id[i];
+		while (i != id[i]) 
+			i= id[i];
 		return i;					// Max N- array access , one for each element
 	}
 
