@@ -23,9 +23,9 @@ public class Anagram {
     	Anagram ana = new Anagram();
     	ana.anag("president", "");
     	System.out.println("Size = "+ ana.myset.size());
-        System.out.println("Running Time :"+ (System.currentTimeMillis() - timeNow));
         for(String str : ana.myset){
             System.out.println(str);
         }
+        System.out.println("Running Time :"+ (System.currentTimeMillis() - timeNow) + " ms");
 }
 }

@@ -29,6 +29,7 @@ public class WordsInLongString {
 	}
 
 	public static void main(String[] args) throws IOException {
+		long timeNow = System.currentTimeMillis();
 		myDict = new HashSet<>();
 		BufferedReader dict = new BufferedReader(new FileReader("dictionary.txt"));
 		String str;
@@ -43,6 +44,7 @@ public class WordsInLongString {
 		String inputStr = input.readLine();
 		if (findWords(inputStr))
 			System.out.println("Done");
+		System.out.println("Running Time :"+ (System.currentTimeMillis() - timeNow) + " ms");
 		input.close();
 		out.close();
 	}
