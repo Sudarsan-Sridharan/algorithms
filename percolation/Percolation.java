@@ -44,11 +44,11 @@ public class Percolation {
 		}
 		// Right Access
 		if(j<seed && isOpen(i, j+1)){
-			grid.union(xyTo1D(i,j), xyTo1D(i, j+1));
+			grid.union(xyTo1D(i, j+1),xyTo1D(i,j));
 		}
 		//Bottom Access
 		if(i<seed && isOpen(i+1, j)){
-			grid.union(xyTo1D(i,j), xyTo1D(i+1, j));
+			grid.union( xyTo1D(i+1, j),xyTo1D(i,j));
 		}
 		//Left Access
 		if(j>1 && isOpen(i, j-1)){
