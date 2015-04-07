@@ -1,6 +1,3 @@
-
-
-
 public class Percolation {
 	
 	int seed;   
