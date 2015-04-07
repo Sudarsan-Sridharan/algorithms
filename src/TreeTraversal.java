@@ -17,7 +17,9 @@ public class TreeTraversal {
 		
 		return new Node(0);
 	}
-
+	/*
+	 * PreOrder Tree Traversal -  Depth First Search
+	 */
 	public static void preorder(Node root){
 		if (root == null) return;
 		
@@ -25,7 +27,9 @@ public class TreeTraversal {
 		preorder(root.left);
 		preorder(root.right);
 	}
-	
+	/*
+	 * InOrder Tree Traversal -  Depth First Search
+	 */
 	public static void inorder(Node root){
 		if (root == null) return;
 		
@@ -33,13 +37,33 @@ public class TreeTraversal {
 		System.out.print(root.value + "-");
 		inorder(root.right);
 	}
-	
+	/*
+	 * PostOrder Tree Traversal -  Depth First Search
+	 */
 	public static void postorder(Node root){
 		if (root == null) return;
 		
 		postorder(root.left);
 		postorder(root.right);
 		System.out.print(root.value + "-");
+	}
+	
+	/*
+	 * Level Order Tree Traversal -  Breadth First Search
+	 */
+	public static void BFS(Node root){
+		if (root == null) return;
+		
+		Queue<Node> queue = new Queue<>();
+		queue.enqueue(root);
+		
+		while (!queue.isEmpty()){
+			Node temp = queue.dequeue();
+			System.out.print(temp.value +"-");
+			if (temp.left != null) queue.enqueue(temp.left);
+			if (temp.right!= null) queue.enqueue(temp.right);
+		}
+		
 	}
 	
 	public static void main(String[] args) {
@@ -66,14 +90,22 @@ public class TreeTraversal {
 		root.left.right.right = new Node(7);		// Level 2
 		root.right.right.left = new Node(13); 		// Level 2
 		
-		System.out.println("###### Preorder #######");
+		// Tree Traversals
+		System.out.println("###### Preorder -  Depth First #######");
 		preorder(root);
+		
 		System.out.println("");
-		System.out.println("###### Inorder #######");
+		System.out.println("###### Inorder -  Depth First #######");
 		inorder(root);
+		
 		System.out.println("");
-		System.out.println("###### Postorder #######");
+		System.out.println("###### Postorder -  Depth First #######");
 		postorder(root);
+		
+		
+		System.out.println("");
+		System.out.println("###### Level Order Traversal - Breadth First #######");
+		BFS(root);
 	}
 
 }
