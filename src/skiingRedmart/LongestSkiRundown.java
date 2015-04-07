@@ -69,6 +69,9 @@ public class LongestSkiRundown {
 		return arr;
 	}
 	
+	/*
+	 * Initialize each element and its neighbors
+	 */
 	private static void fillNeighbours(SkiingElement curr, int row, int col){
 			List<SkiingElement> adjList = new ArrayList<>();
 			// Checking List of adjacent element
@@ -79,6 +82,9 @@ public class LongestSkiRundown {
 			curr.adjElements = adjList;
 		}
 	
+	/*
+	 * Calculate Max Path length for each element along with the last Element
+	 */
 	private static SkiingElement calculateDepths(SkiingElement curr) {
 		if (!curr.isVisited){
 			curr.isVisited = true;
@@ -104,6 +110,9 @@ public class LongestSkiRundown {
 		return curr;
 	}
 	
+	/*
+	 * Determine the Max drop of any give Node
+	 */
 	private static SkiingElement getMaxDrop(SkiingElement node1, SkiingElement node2){
 		int depth1 = node1.value - node1.lastElementElevation;
 		int depth2 = node2.value - node2.lastElementElevation;
@@ -115,12 +124,13 @@ public class LongestSkiRundown {
 		
 		final long start = System.currentTimeMillis();			// Program Start Time
 		
-		LongestSkiRundown obj = new LongestSkiRundown();
 		File file = new File("src/skiingRedmart/input.txt");
 		arr = readElevationValues(file);
 		
+		// Initialize
 		arr = initializeArray(arr);
-//		System.out.println(arr[2][3].maxLen);
+		
+		// Printing values
 		System.out.println("Start Node = "+ initNode.value + " , End Node = "+ initNode.lastElementElevation);
 		System.out.println("Length = "+ maxLen + "  , Drop = "+ (initNode.value - initNode.lastElementElevation));
 		SkiingElement temp = initNode;
