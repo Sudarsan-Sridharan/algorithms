@@ -64,6 +64,25 @@ public class TreeTraversal {
 			if (temp.right!= null) queue.enqueue(temp.right);
 		}
 		
+		// Printing Level Wise
+		queue.enqueue(root);
+		queue.enqueue(new Node(-1));		// Sentinel Value
+		
+		System.out.println("");
+		System.out.println("###### Level Wise - Breadth First #######");
+		while (!queue.isEmpty()){
+			Node temp = queue.dequeue();
+			if (temp.value ==-1 && queue.size()>1){
+				System.out.println("");
+				queue.enqueue(new Node(-1));
+			} else {
+				if (temp.value != -1)	System.out.print(temp.value + " ");
+				if (temp.left != null) 	queue.enqueue(temp.left);
+				if (temp.right!= null) 	queue.enqueue(temp.right);
+			}
+			
+		}
+		
 	}
 	
 	public static void main(String[] args) {
