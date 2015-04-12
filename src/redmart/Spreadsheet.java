@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Spreadsheet {
 
 	final static int ASCIIOFFSET = 65;
+	final static int rowMax = 26;
 	private HashMap<String, SpreadsheetCell> spreadSheet;
 	private static int row, col;
 
@@ -58,7 +59,7 @@ public class Spreadsheet {
 		String[] s = in.nextLine().split(" ");
 		row = Integer.parseInt(s[1]);
 		col = Integer.parseInt(s[0]);
-		if (row > 26 || row < 1 || col < 1) {
+		if (row > rowMax || row < 1 || col < 1) {
 			in.close();
 			throw new IllegalArgumentException("Illegal Row / Column values.");
 		}
