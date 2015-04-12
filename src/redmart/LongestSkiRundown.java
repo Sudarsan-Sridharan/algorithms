@@ -1,4 +1,4 @@
-package skiingRedmart;
+package redmart;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -141,8 +141,6 @@ public class LongestSkiRundown {
 		}
 		System.out.println("");
 		System.out.println("Elapsed Time: "+(System.currentTimeMillis() - start)/ 1000.0+ " sec");	
-//		for (SkiingElement e : arr[3][3].maxLen)
-//				System.out.println(e.value);
 	}
 
 }

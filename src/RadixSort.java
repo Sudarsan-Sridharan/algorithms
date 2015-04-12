@@ -42,6 +42,8 @@ public class RadixSort {
 		// TODO Auto-generated method stub
 	
 		String [] a = {"Rear","Rest","Pact","Pest","Tact","Ramp","Tale","Rest"};
+		int minLength =0;
+		
 		LSDStringSort(a,4);
 		for (int i=0; i<a.length;i++)
 			System.out.println(a[i]);

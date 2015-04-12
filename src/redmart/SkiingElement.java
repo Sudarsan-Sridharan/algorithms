@@ -1,4 +1,4 @@
-package skiingRedmart;
+package redmart;
 
 import java.util.ArrayList;
 import java.util.List;
