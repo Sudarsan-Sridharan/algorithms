@@ -32,24 +32,25 @@ public class Spreadsheet {
 			this.isEvaluated = false;
 		}
 	}
-	
+
 	/*
 	 * Spreadsheet Constructor
 	 */
 	public Spreadsheet() {
 		spreadSheet = new HashMap<>();
 	}
-	
+
 	/*
 	 * Main method
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		Spreadsheet obj = new Spreadsheet();
-		obj.readSpreadSheetValues();	// Read and Initialize Spreadsheet Values
-		obj.evaluateSpreadsheet();		// Evaluate Spreadsheet Cell Values
-		obj.printSheet();				// Print formatted Spreadsheet Cell Values
+		obj.readSpreadSheetValues(); // Read and Initialize Spreadsheet Values
+		obj.evaluateSpreadsheet(); // Evaluate Spreadsheet Cell Values
+		obj.printSheet(); // Print formatted Spreadsheet Cell Values
 
 	}
+
 	/*
 	 * Read and Initialize Spreadsheet Values
 	 */
@@ -67,50 +68,51 @@ public class Spreadsheet {
 		for (int i = ASCIIOFFSET; i < row + ASCIIOFFSET; i++)
 			for (int j = 1; j <= col; j++) {
 				String key = String.valueOf(Character.toChars(i)) + j;
-				SpreadsheetCell value = new SpreadsheetCell(key,in.nextLine());
+				SpreadsheetCell value = new SpreadsheetCell(key, in.nextLine());
 				spreadSheet.put(key, value);
 			}
 		in.close();
 	}
+
 	/*
 	 * Evaluate Spreadsheet Cell Values
 	 */
 	private void evaluateSpreadsheet() {
-		for (String s: spreadSheet.keySet()){
+		for (String s : spreadSheet.keySet()) {
 			SpreadsheetCell temp = spreadSheet.get(s);
 			if (!temp.isEvaluated)
 				evaluateCell(temp);
 		}
 	}
-	
+
 	// Evaluate each cell individually
 	private String evaluateCell(SpreadsheetCell s) {
-		if (isNumeric(s.value)) setSpreadsheetCell(s);
-		else if (spreadSheet.containsKey(s.value) && spreadSheet.get(s.value).isEvaluated){
+		if (spreadSheet.containsKey(s.value)
+				&& spreadSheet.get(s.value).isEvaluated) {
 			s.value = spreadSheet.get(s.value).value;
-			setSpreadsheetCell(s);
 		} else {
-			String [] str = s.value.split(" ");
+			String[] str = s.value.split(" ");
 			StringBuffer newStr = new StringBuffer();
-			for (int i =0;i< str.length; i++){
-				if (spreadSheet.containsKey(str[i])){
+			for (int i = 0; i < str.length; i++) {
+				if (spreadSheet.containsKey(str[i])) {
 					str[i] = evaluateCell(spreadSheet.get(str[i]));
 				}
 				newStr.append(str[i].trim());
-				if (i != str.length) newStr.append(" ");
+				if (i != str.length)
+					newStr.append(" ");
 			}
 			s.value = String.valueOf(evalPostfix(newStr.toString()));
-			setSpreadsheetCell(s);
 		}
+		setSpreadsheetCell(s);
 		return s.value;
 	}
-	
+
 	// Update and set Spreadsheet Cell Values
-	private void setSpreadsheetCell(SpreadsheetCell s){
+	private void setSpreadsheetCell(SpreadsheetCell s) {
 		s.isEvaluated = true;
 		spreadSheet.put(s.cellId, s);
 	}
-	
+
 	/*
 	 * Calculate and return Postfix calculated value
 	 */
@@ -120,15 +122,18 @@ public class Spreadsheet {
 
 	// Checks if the string is numeric
 	public static boolean isNumeric(String str) {
-		try { double d = Double.parseDouble(str); } 
-		catch (NumberFormatException nfe) {	return false;}
+		try {
+			double d = Double.parseDouble(str);
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
 		return true;
 	}
-	
+
 	/*
 	 * Print formatted Spreadsheet Cell Values
 	 */
-	private void printSheet(){
+	private void printSheet() {
 		System.out.println(col + " " + row);
 		for (int i = ASCIIOFFSET; i < row + ASCIIOFFSET; i++)
 			for (int j = 1; j <= col; j++) {
@@ -150,9 +155,10 @@ public class Spreadsheet {
 		static double evalPostfix(String postfix) {
 			Stack<Double> tempStack = new Stack<>();
 			double result = 0;
-			if (Spreadsheet.isNumeric(postfix)) return Double.parseDouble(postfix);
+			if (Spreadsheet.isNumeric(postfix))
+				return Double.parseDouble(postfix);
 			for (String s : postfix.split(" ")) {
-				if (!operator.contains(s) && s!= " ")
+				if (!operator.contains(s) && s != " ")
 					tempStack.push(Double.parseDouble(s));
 				else if (operator.contains(s)) {
 					if (!tempStack.isEmpty()) {
@@ -169,7 +175,7 @@ public class Spreadsheet {
 						case "/":
 							double op2 = tempStack.pop();
 							double op1 = tempStack.pop();
-							result = op1/op2;
+							result = op1 / op2;
 							break;
 						case "++":
 							double incr = tempStack.pop();
