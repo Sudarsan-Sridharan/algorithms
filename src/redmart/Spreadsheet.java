@@ -79,9 +79,8 @@ public class Spreadsheet {
 	 */
 	private void evaluateSpreadsheet() {
 		for (String s : spreadSheet.keySet()) {
-			SpreadsheetCell temp = spreadSheet.get(s);
-			if (!temp.isEvaluated)
-				evaluateCell(temp);
+			if (!spreadSheet.get(s).isEvaluated)
+				evaluateCell(spreadSheet.get(s));
 		}
 	}
 
@@ -89,7 +88,7 @@ public class Spreadsheet {
 	private String evaluateCell(SpreadsheetCell s) {
 		if (spreadSheet.containsKey(s.value)
 				&& spreadSheet.get(s.value).isEvaluated) {
-			s.value = spreadSheet.get(s.value).value;
+			s.value = spreadSheet.get(s.value).value;	// Setting value of Child to one self
 		} else {
 			String[] str = s.value.split(" ");
 			StringBuffer newStr = new StringBuffer();
