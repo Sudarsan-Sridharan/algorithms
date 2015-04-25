@@ -15,16 +15,16 @@ public class Anagram {
     	}
 //    	System.out.println("Inside Call - s1= "+s1+" ,s2= "+s2 );
     	for(int i = 0; i < s1.length(); i++)	{
-    		anag(s1.substring(0, i) + s1.substring(i+1), s1.charAt(i) + s2);
+    		anag(s1.substring(0, i) + s1.substring(i+1), s2+s1.charAt(i));
     		}
     	}
     
     public static void main(String[] args)	{
     	long timeNow = System.currentTimeMillis();
     	Anagram ana = new Anagram();
-    	ana.anag("abcde", "");
+    	ana.anag("abba", "");
         for(String str : ana.myset){
-//            System.out.println(str);
+            System.out.println(str);
         }
         System.out.println(ana.myset.size());
         System.out.println("Running Time :"+ (System.currentTimeMillis() - timeNow) + " ms");
